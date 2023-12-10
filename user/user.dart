@@ -15,6 +15,9 @@ class User with _$User {
 
     /// Password
     required String password,
+
+    /// The score this user has
+    @Default(0) int score,
   }) = _User;
 
   /// From json function
