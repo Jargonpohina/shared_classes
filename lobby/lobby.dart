@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mobilecurling_auth/core/shared_classes/user/user.dart';
 
 part 'lobby.freezed.dart';
 part 'lobby.g.dart';
@@ -14,10 +15,13 @@ class Lobby with _$Lobby {
     required String id,
 
     /// Player 1 of the lobby (who created it)
-    required String playerOne,
+    required User playerOne,
 
     /// Player 2 of the lobby (who has joined it, if someone has already)
-    required String? playerTwo,
+    required User? playerTwo,
+
+    /// When the lobby has been created
+    required DateTime createdAt,
   }) = _Lobby;
 
   /// From json function

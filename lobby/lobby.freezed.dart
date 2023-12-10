@@ -24,10 +24,13 @@ mixin _$Lobby {
   String get id => throw _privateConstructorUsedError;
 
   /// Player 1 of the lobby (who created it)
-  String get playerOne => throw _privateConstructorUsedError;
+  User get playerOne => throw _privateConstructorUsedError;
 
   /// Player 2 of the lobby (who has joined it, if someone has already)
-  String? get playerTwo => throw _privateConstructorUsedError;
+  User? get playerTwo => throw _privateConstructorUsedError;
+
+  /// When the lobby has been created
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +42,10 @@ abstract class $LobbyCopyWith<$Res> {
   factory $LobbyCopyWith(Lobby value, $Res Function(Lobby) then) =
       _$LobbyCopyWithImpl<$Res, Lobby>;
   @useResult
-  $Res call({String id, String playerOne, String? playerTwo});
+  $Res call({String id, User playerOne, User? playerTwo, DateTime createdAt});
+
+  $UserCopyWith<$Res> get playerOne;
+  $UserCopyWith<$Res>? get playerTwo;
 }
 
 /// @nodoc
@@ -58,6 +64,7 @@ class _$LobbyCopyWithImpl<$Res, $Val extends Lobby>
     Object? id = null,
     Object? playerOne = null,
     Object? playerTwo = freezed,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -67,12 +74,36 @@ class _$LobbyCopyWithImpl<$Res, $Val extends Lobby>
       playerOne: null == playerOne
           ? _value.playerOne
           : playerOne // ignore: cast_nullable_to_non_nullable
-              as String,
+              as User,
       playerTwo: freezed == playerTwo
           ? _value.playerTwo
           : playerTwo // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as User?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get playerOne {
+    return $UserCopyWith<$Res>(_value.playerOne, (value) {
+      return _then(_value.copyWith(playerOne: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get playerTwo {
+    if (_value.playerTwo == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.playerTwo!, (value) {
+      return _then(_value.copyWith(playerTwo: value) as $Val);
+    });
   }
 }
 
@@ -83,7 +114,12 @@ abstract class _$$LobbyImplCopyWith<$Res> implements $LobbyCopyWith<$Res> {
       __$$LobbyImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String playerOne, String? playerTwo});
+  $Res call({String id, User playerOne, User? playerTwo, DateTime createdAt});
+
+  @override
+  $UserCopyWith<$Res> get playerOne;
+  @override
+  $UserCopyWith<$Res>? get playerTwo;
 }
 
 /// @nodoc
@@ -100,6 +136,7 @@ class __$$LobbyImplCopyWithImpl<$Res>
     Object? id = null,
     Object? playerOne = null,
     Object? playerTwo = freezed,
+    Object? createdAt = null,
   }) {
     return _then(_$LobbyImpl(
       id: null == id
@@ -109,11 +146,15 @@ class __$$LobbyImplCopyWithImpl<$Res>
       playerOne: null == playerOne
           ? _value.playerOne
           : playerOne // ignore: cast_nullable_to_non_nullable
-              as String,
+              as User,
       playerTwo: freezed == playerTwo
           ? _value.playerTwo
           : playerTwo // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as User?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -122,7 +163,10 @@ class __$$LobbyImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LobbyImpl extends _Lobby {
   const _$LobbyImpl(
-      {required this.id, required this.playerOne, required this.playerTwo})
+      {required this.id,
+      required this.playerOne,
+      required this.playerTwo,
+      required this.createdAt})
       : super._();
 
   factory _$LobbyImpl.fromJson(Map<String, dynamic> json) =>
@@ -134,15 +178,19 @@ class _$LobbyImpl extends _Lobby {
 
   /// Player 1 of the lobby (who created it)
   @override
-  final String playerOne;
+  final User playerOne;
 
   /// Player 2 of the lobby (who has joined it, if someone has already)
   @override
-  final String? playerTwo;
+  final User? playerTwo;
+
+  /// When the lobby has been created
+  @override
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Lobby(id: $id, playerOne: $playerOne, playerTwo: $playerTwo)';
+    return 'Lobby(id: $id, playerOne: $playerOne, playerTwo: $playerTwo, createdAt: $createdAt)';
   }
 
   @override
@@ -154,12 +202,15 @@ class _$LobbyImpl extends _Lobby {
             (identical(other.playerOne, playerOne) ||
                 other.playerOne == playerOne) &&
             (identical(other.playerTwo, playerTwo) ||
-                other.playerTwo == playerTwo));
+                other.playerTwo == playerTwo) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, playerOne, playerTwo);
+  int get hashCode =>
+      Object.hash(runtimeType, id, playerOne, playerTwo, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -178,8 +229,9 @@ class _$LobbyImpl extends _Lobby {
 abstract class _Lobby extends Lobby {
   const factory _Lobby(
       {required final String id,
-      required final String playerOne,
-      required final String? playerTwo}) = _$LobbyImpl;
+      required final User playerOne,
+      required final User? playerTwo,
+      required final DateTime createdAt}) = _$LobbyImpl;
   const _Lobby._() : super._();
 
   factory _Lobby.fromJson(Map<String, dynamic> json) = _$LobbyImpl.fromJson;
@@ -191,11 +243,15 @@ abstract class _Lobby extends Lobby {
   @override
 
   /// Player 1 of the lobby (who created it)
-  String get playerOne;
+  User get playerOne;
   @override
 
   /// Player 2 of the lobby (who has joined it, if someone has already)
-  String? get playerTwo;
+  User? get playerTwo;
+  @override
+
+  /// When the lobby has been created
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$LobbyImplCopyWith<_$LobbyImpl> get copyWith =>
