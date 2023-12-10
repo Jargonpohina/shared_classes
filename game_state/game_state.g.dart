@@ -47,4 +47,5 @@ Map<String, dynamic> _$$GameStateImplToJson(_$GameStateImpl instance) =>
 const _$StateEnumMap = {
   State.started: 'started',
   State.ended: 'ended',
+  State.resolved: 'resolved',
 };
