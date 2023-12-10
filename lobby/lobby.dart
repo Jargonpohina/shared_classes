@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mobilecurling_auth/core/shared_classes/user/user.dart';
+import '../user/user.dart';
 
 part 'lobby.freezed.dart';
 part 'lobby.g.dart';
