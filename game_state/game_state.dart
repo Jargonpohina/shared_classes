@@ -13,6 +13,8 @@ enum State {
   ended,
   @JsonValue('resolved')
   resolved,
+  @JsonValue('quitting')
+  quitting,
 }
 
 /// Game state. Create this class, fill it with data, and ship to the players with .toJson() method.
