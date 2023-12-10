@@ -48,5 +48,8 @@ const _$StateEnumMap = {
   State.started: 'started',
   State.ended: 'ended',
   State.resolved: 'resolved',
+<<<<<<< HEAD
   State.quitting: 'quitting',
+=======
+>>>>>>> 3765a2890ffae2832e3061af09c81bcbfe1cd234
 };
